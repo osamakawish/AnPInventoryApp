@@ -21,15 +21,18 @@ namespace AnPInventoryApp.Views;
 /// </summary>
 public partial class SheetCollectionView : UserControl
 {
-    private SheetCollectionViewModel _viewModel;
+    public SheetCollectionViewModel ViewModel
+    {
+        get => (SheetCollectionViewModel)DataContext;
+        init => DataContext = value;
+    }
 
     public SheetCollectionView()
     {
         InitializeComponent();
-        _viewModel = new SheetCollectionViewModel();
-        DataContext = _viewModel;
+        ViewModel = new SheetCollectionViewModel();
 
-        foreach (var sheet in _viewModel.MaterialSheets)
+        foreach (var sheet in ViewModel.MaterialSheets)
         {
             ListView.Items.Add(sheet);
         }
@@ -38,7 +41,7 @@ public partial class SheetCollectionView : UserControl
     public SheetCollectionView(SheetCollectionViewModel viewModel)
     {
         InitializeComponent();
-        _viewModel = viewModel;
-        DataContext = _viewModel;
+        ViewModel = viewModel;
+        DataContext = ViewModel;
     }
 }

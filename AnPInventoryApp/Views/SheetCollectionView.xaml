@@ -9,8 +9,10 @@
     <ListView x:Name="ListView" Background="#333">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <StackPanel>
-                    
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Material}" />
+                    <TextBlock Text="{Binding Location}" />
+                    <TextBlock Text="{Binding Thickness}" />
                 </StackPanel>
             </DataTemplate>
         </ListView.ItemTemplate>

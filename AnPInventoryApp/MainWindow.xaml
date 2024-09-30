@@ -3,14 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AnPInventoryApp"
+        xmlns:local="clr-namespace:AnPInventoryApp" xmlns:views="clr-namespace:AnPInventoryApp.Views"
         mc:Ignorable="d"
-        Background="#222" WindowState="Maximized"
+        Background="#333" WindowState="Maximized"
         Title="ANP Cutting Inventory" Height="450" Width="800">
     <Window.Resources>
         
     </Window.Resources>
-    <Grid>
+    <StackPanel>
+        <Menu Height="18" Background="#111">
+            <Menu.Resources>
+                <Style TargetType="MenuItem">
+                    <Setter Property="Foreground" Value="WhiteSmoke"/>
+                    <Setter Property="FontSize" Value="10"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="Padding" Value="8,1.5"/>
+                </Style>
+            </Menu.Resources>
+            <MenuItem Header="File"/>
+            <MenuItem Header="Add">
+                <MenuItem Header="Material Sheet" Command="{Binding AddMaterialSheetCommand}"/>
+            </MenuItem>
+        </Menu>
+        <views:SheetCollectionView x:Name="SheetCollectionView"/>
+    </StackPanel>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="36"/>
             <RowDefinition Height="1*"/>
@@ -21,24 +38,5 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Label
-            Content="Available Sheets"
-            Foreground="LightGreen"
-            FontSize="20"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Bottom"
-            Padding="0"
-            />
-        <Label
-            Content="Used Sheets"
-            Foreground="#faa"
-            FontSize="20"
-            HorizontalContentAlignment="Center"
-            Grid.Column="1"
-            VerticalContentAlignment="Bottom"
-            Padding="0"
-            />
-        <ListView Background="#333" Margin="6,0,6,6" Grid.Row="1" Grid.Column="0"/>
-        <ListView Background="#333" Margin="6,0,6,6" Grid.Row="1" Grid.Column="1"/>
-    </Grid>
+    </Grid>-->
 </Window>

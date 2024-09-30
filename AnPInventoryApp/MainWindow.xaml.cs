@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using AnPInventoryApp.ViewModels;
+using AnPInventoryApp.Views;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +18,20 @@ namespace AnPInventoryApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainViewModel MainViewModel { get; }
+
         public MainWindow()
         {
             InitializeComponent();
+
+            MainViewModel = new MainViewModel() {
+                SheetCollectionViewModel = SheetCollectionView.ViewModel,
+                AddMaterialSheetCommand = new RelayCommand(() =>
+                {
+                    var addMaterialSheetWindow = new AddMaterialSheetWindow();
+                })
+            };
+            DataContext = MainViewModel;
         }
     }
 }

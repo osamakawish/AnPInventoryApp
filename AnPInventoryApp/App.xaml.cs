@@ -21,12 +21,6 @@ public partial class App : Application
             .ConfigureServices((context, services) =>
             {
                 services.AddDbContext<AppDbContext>();
-
-                services.AddTransient<MaterialSheetViewModel>();
-                services.AddTransient<MaterialSheetView>();
-
-                services.AddTransient<SheetCollectionViewModel>();
-                services.AddTransient<SheetCollectionView>();
             })
             .Build();
     }
