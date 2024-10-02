@@ -12,6 +12,11 @@ public class AppDbContext : DbContext
 {
     internal DbSet<MaterialSheet> MaterialSheets { get; set; }
 
+    public AppDbContext()
+    {
+        Database.EnsureCreated();
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite("Data Source=app.db");

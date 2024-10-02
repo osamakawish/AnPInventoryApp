@@ -1,4 +1,5 @@
 ﻿using AnPInventoryApp.Models;
+using AnPInventoryApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,11 +7,23 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace AnPInventoryApp.ViewModels;
 
 public class MaterialSheetViewModel : INotifyPropertyChanged
 {
+    public static MaterialSheet? AddMaterialSheetDialog()
+    {
+        var addMaterialSheetWindow = new AddMaterialSheetWindow {
+            Owner = Application.Current.MainWindow,
+            MaterialSheet = new()
+        };
+        var dialogResult = addMaterialSheetWindow.ShowDialog();
+
+        return dialogResult is true ? addMaterialSheetWindow.MaterialSheet : null;
+    }
+
     public MaterialSheet MaterialSheet { get; init; } = new();
 
     public uint Id => MaterialSheet.Id;

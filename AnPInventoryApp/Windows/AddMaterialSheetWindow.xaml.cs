@@ -21,7 +21,7 @@ namespace AnPInventoryApp.Views;
 /// </summary>
 public partial class AddMaterialSheetWindow : Window
 {
-    internal MaterialSheet? MaterialSheet { get; set; } = null;
+    public required MaterialSheet MaterialSheet { get; set; }
 
     public AddMaterialSheetWindow()
     {
@@ -36,12 +36,13 @@ public partial class AddMaterialSheetWindow : Window
             return;
         }
 
-        MaterialSheet = new MaterialSheet
+        var materialSheet = new MaterialSheet
         {
             Material = MaterialInput.Text,
             Location = LocationInput.Text,
             Thickness = thickness
         };
+
         base.OnClosing(e);
     }
 }

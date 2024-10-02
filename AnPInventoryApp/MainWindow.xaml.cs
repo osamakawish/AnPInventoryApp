@@ -25,12 +25,17 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         MainViewModel = new MainViewModel() {
-            SheetCollectionViewModel = SheetCollectionView.ViewModel,
-            AddMaterialSheetCommand = new RelayCommand(() =>
-            {
-                var addMaterialSheetWindow = new AddMaterialSheetWindow();
-            })
+            SheetCollectionViewModel = SheetCollectionView.ViewModel
         };
+
+        MainViewModel.AddMaterialSheetCommand = new RelayCommand(() =>
+        {
+            var materialSheet = MaterialSheetViewModel.AddMaterialSheetDialog();
+            if (materialSheet is null) return;
+
+            MainViewModel.SheetCollectionViewModel.AddSheet(materialSheet);
+        });
+
         DataContext = MainViewModel;
     }
 }

@@ -10,5 +10,5 @@ namespace AnPInventoryApp.ViewModels;
 public class MainViewModel
 {
     public required SheetCollectionViewModel SheetCollectionViewModel { get; init; }
-    public required ICommand AddMaterialSheetCommand { get; init; }
+    public ICommand? AddMaterialSheetCommand { get; internal set; }
 }
