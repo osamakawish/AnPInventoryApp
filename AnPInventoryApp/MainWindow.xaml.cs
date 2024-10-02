@@ -11,27 +11,26 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AnPInventoryApp
+namespace AnPInventoryApp;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public MainViewModel MainViewModel { get; }
+
+    public MainWindow()
     {
-        public MainViewModel MainViewModel { get; }
+        InitializeComponent();
 
-        public MainWindow()
-        {
-            InitializeComponent();
-
-            MainViewModel = new MainViewModel() {
-                SheetCollectionViewModel = SheetCollectionView.ViewModel,
-                AddMaterialSheetCommand = new RelayCommand(() =>
-                {
-                    var addMaterialSheetWindow = new AddMaterialSheetWindow();
-                })
-            };
-            DataContext = MainViewModel;
-        }
+        MainViewModel = new MainViewModel() {
+            SheetCollectionViewModel = SheetCollectionView.ViewModel,
+            AddMaterialSheetCommand = new RelayCommand(() =>
+            {
+                var addMaterialSheetWindow = new AddMaterialSheetWindow();
+            })
+        };
+        DataContext = MainViewModel;
     }
 }

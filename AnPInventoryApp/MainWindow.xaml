@@ -27,16 +27,4 @@
         </Menu>
         <views:SheetCollectionView x:Name="SheetCollectionView"/>
     </StackPanel>
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="36"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-
-    </Grid>-->
 </Window>

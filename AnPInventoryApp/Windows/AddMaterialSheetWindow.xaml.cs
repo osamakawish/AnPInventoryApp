@@ -1,6 +1,7 @@
 ﻿using AnPInventoryApp.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,14 +28,20 @@ public partial class AddMaterialSheetWindow : Window
         InitializeComponent();
     }
 
-    protected override void OnClosed(EventArgs e)
+    protected override void OnClosing(CancelEventArgs e)
     {
-        base.OnClosed(e);
+        if (float.TryParse(ThicknessInput.Text, out var thickness))
+        {
+            MessageBox.Show("Thickness is not a valid float.");
+            return;
+        }
+
         MaterialSheet = new MaterialSheet
         {
             Material = MaterialInput.Text,
             Location = LocationInput.Text,
-            Thickness = ThicknessInput.Text
+            Thickness = thickness
         };
+        base.OnClosing(e);
     }
 }
