@@ -7,14 +7,24 @@
         x:Class="AnPInventoryAvalonia.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
+		WindowState="Maximized"
         Title="AnPInventoryAvalonia">
-
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+	<StackPanel>
+		<StackPanel x:Name="MainPanel" Orientation="Horizontal">
+			<Button 
+				Content="Add Random Sheet"
+				Command="{Binding GenerateRandomMaterialSheetCommand}"/>
+		</StackPanel>
+	    <DataGrid ItemsSource="{Binding MaterialSheets}"
+				  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Material" Binding="{Binding Material}"/>
+				<DataGridTextColumn Header="Location" Binding="{Binding Location}"/>
+				<DataGridTextColumn Header="Thickness" Binding="{Binding Thickness}"/>
+			</DataGrid.Columns>
+	    </DataGrid>
+	</StackPanel>
 </Window>

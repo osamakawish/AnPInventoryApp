@@ -1,3 +1,4 @@
+using AnPInventoryAvalonia.ViewModels;
 using Avalonia.Controls;
 
 namespace AnPInventoryAvalonia.Views;
