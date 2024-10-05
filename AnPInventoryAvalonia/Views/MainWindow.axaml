@@ -12,19 +12,24 @@
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-	<StackPanel>
+	<RelativePanel>
 		<StackPanel x:Name="MainPanel" Orientation="Horizontal">
 			<Button 
 				Content="Add Random Sheet"
 				Command="{Binding GenerateRandomMaterialSheetCommand}"/>
 		</StackPanel>
 	    <DataGrid ItemsSource="{Binding MaterialSheets}"
-				  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+				  RelativePanel.Below="MainPanel"
+				  RelativePanel.AlignLeftWithPanel="True"
+				  RelativePanel.AlignRightWithPanel="True"
+				  RelativePanel.AlignBottomWithPanel="True"
+				  >
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Material" Binding="{Binding Material}"/>
 				<DataGridTextColumn Header="Location" Binding="{Binding Location}"/>
 				<DataGridTextColumn Header="Thickness" Binding="{Binding Thickness}"/>
 			</DataGrid.Columns>
 	    </DataGrid>
-	</StackPanel>
+	</RelativePanel>
 </Window>

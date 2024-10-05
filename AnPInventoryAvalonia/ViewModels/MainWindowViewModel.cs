@@ -21,8 +21,6 @@ public partial class MainWindowViewModel : ViewModelBase
 
         MaterialSheets = [.. context.MaterialSheets.ToList()];
 
-
-        //MaterialSheets = new([.. context.MaterialSheets]);
         GenerateRandomMaterialSheetCommand = new RelayCommand(
             () =>
             {
