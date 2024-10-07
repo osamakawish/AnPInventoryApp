@@ -12,8 +12,11 @@ namespace AnPInventoryAvalonia.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
+    public string DebugText { get; set; } = "Debug text here.";
     public ICommand GenerateRandomMaterialSheetCommand { get; } 
+    public ICommand DeleteMaterialSheetCommand { get; }
     public ObservableCollection<MaterialSheet> MaterialSheets { get; }
+    public MaterialSheet? SelectedItem { get; set; }
 
     public MainWindowViewModel()
     {
@@ -21,10 +24,14 @@ public partial class MainWindowViewModel : ViewModelBase
 
         MaterialSheets = [.. context.MaterialSheets.ToList()];
 
-        GenerateRandomMaterialSheetCommand = new RelayCommand(
-            () =>
+        GenerateRandomMaterialSheetCommand
+            = new RelayCommand(() => { AddSheet(MaterialSheet.GenerateRandom()); });
+
+        DeleteMaterialSheetCommand
+            = new RelayCommand(() =>
             {
-                AddSheet(MaterialSheet.GenerateRandom());
+                if (SelectedItem == null) return;
+                RemoveSheet(SelectedItem.Id);
             });
     }
 
@@ -90,7 +97,7 @@ public partial class MainWindowViewModel : ViewModelBase
         context.SaveChanges();
     }
 
-    public void Remove(uint id, bool updateUi = true)
+    public void RemoveSheet(uint id, bool updateUi = true)
     {
         for (var i = 0; i < MaterialSheets.Count; i++)
         {
@@ -103,5 +110,6 @@ public partial class MainWindowViewModel : ViewModelBase
         if (materialSheet == null) return;
 
         context.MaterialSheets.Remove(materialSheet);
+        context.SaveChanges();
     }
 }

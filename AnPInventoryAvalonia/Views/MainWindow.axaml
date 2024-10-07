@@ -16,9 +16,17 @@
 		<StackPanel x:Name="MainPanel" Orientation="Horizontal">
 			<Button 
 				Content="Add Random Sheet"
-				Command="{Binding GenerateRandomMaterialSheetCommand}"/>
+				Command="{Binding GenerateRandomMaterialSheetCommand}"
+				/>
+			<Button
+				Content="Delete Sheet"
+				Background="Red"
+				Command="{Binding DeleteMaterialSheetCommand}"
+				/>
+			<Label Content="{Binding DebugText}"/>
 		</StackPanel>
-	    <DataGrid ItemsSource="{Binding MaterialSheets}"
+	    <DataGrid x:Name="MaterialSheetGrid" ItemsSource="{Binding MaterialSheets}"
+				  SelectedItem="{Binding SelectedItem}"
 				  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 				  RelativePanel.Below="MainPanel"
 				  RelativePanel.AlignLeftWithPanel="True"
