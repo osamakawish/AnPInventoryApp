@@ -28,7 +28,8 @@
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Material" Binding="{Binding Material}"/>
 				<DataGridTextColumn Header="Location" Binding="{Binding Location}"/>
-				<DataGridTextColumn Header="Thickness" Binding="{Binding Thickness}"/>
+				<DataGridTextColumn Header="Thickness" Binding="{Binding Thickness, StringFormat={}{0:0.00}}"/>
+				<DataGridTextColumn Header="Points" Binding="{Binding FormattedPoints}"/>
 			</DataGrid.Columns>
 	    </DataGrid>
 	</RelativePanel>

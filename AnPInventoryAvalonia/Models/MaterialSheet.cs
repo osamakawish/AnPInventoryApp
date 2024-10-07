@@ -30,15 +30,23 @@ public class MaterialSheet
         set
         {
             XValues = value.Select(p => p.X).ToList();
-            YValues = value.Select(p => p.X).ToList();
+            YValues = value.Select(p => p.Y).ToList();
         }
     }
+
+    internal string FormattedPoints => string.Join(", ", Points.Select(p => $"({p.X:0}, {p.Y:0})"));
 
     // For database storage
     public string SerializedXValues
     {
         get => JsonConvert.SerializeObject(XValues);
         set => XValues = JsonConvert.DeserializeObject<List<float>>(value) ?? [];
+    }
+
+    public string SerializedYValues
+    {
+        get => JsonConvert.SerializeObject(YValues);
+        set => YValues = JsonConvert.DeserializeObject<List<float>>(value) ?? [];
     }
 
     public bool UpdateTo(MaterialSheet other)
@@ -52,12 +60,6 @@ public class MaterialSheet
         other.YValues = YValues;
 
         return true;
-    }
-
-    public string SerializedYValues
-    {
-        get => JsonConvert.SerializeObject(YValues);
-        set => YValues = JsonConvert.DeserializeObject<List<float>>(value) ?? [];
     }
 
     public SizeF Size => Points.Count() == 0 ? new(0,0) : new(XValues.Max(), YValues.Max());
@@ -95,7 +97,9 @@ public class MaterialSheet
         var points = new PointF[len];
 
         while (i < len) {
-            points[i++] = new PointF(random.NextSingle() * 48, random.NextSingle() * 48);
+            var x = random.Next(0, 48);
+            var y = random.Next(0, 48);
+            points[i++] = new PointF(x, y);
         }
 
         return points;
